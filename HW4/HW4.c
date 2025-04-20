@@ -56,7 +56,7 @@ void makeSineWave() {
     float radian = 0;
     for (int i=0;i<100;i++){
         sine_wave[i] = 1.65 * sin(radian) + 1.65; // Centers the sine wave on 1.65 with amplitude 1.65, making it always positive
-        radian += (4*3.14159265359) / 100; // Makes two periods in one cycle
+        radian += (2*3.14159265359) / 100; // Makes two periods in one cycle
     }
 }
 
@@ -82,7 +82,9 @@ int main()
     stdio_init_all();
     makeSineWave();
     makeTriangleWave();
-
+    while (!stdio_usb_connected()) {
+        sleep_ms(100);
+    }
     // SPI initialisation. This example will use SPI at 1MHz.
     spi_init(SPI_PORT, 1000*1000);
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
