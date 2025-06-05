@@ -3,18 +3,18 @@
 #include <stdio.h>
 
 // Motor A pins
-#define IN1 17  // PWM
-#define IN2 16  // Direction
+#define IN1 16  // PWM
+#define IN2 17  // Direction
 
 // Motor B pins
-#define IN3 19  // Direction
-#define IN4 18  // PWM
+#define IN3 18  // Direction
+#define IN4 19  // PWM
 
 #define SPEED_STEP 5000
 #define MAX_SPEED  65535
 #define MIN_SPEED  0
 
-uint16_t speed = 32768;  // Start at 50% duty cycle
+uint16_t speed = 50000;  // Start at 50% duty cycle
 
 void setup_pwm(uint gpio_pin, uint16_t duty) {
     gpio_set_function(gpio_pin, GPIO_FUNC_PWM);
@@ -45,7 +45,7 @@ int main() {
 
     // Setup PWM on IN1 and IN4
     setup_pwm(IN1, speed);
-    setup_pwm(IN4, speed);
+    setup_pwm(IN4, speed-1637);
 
     printf("Use '+' to increase speed, '-' to decrease.\n");
 
